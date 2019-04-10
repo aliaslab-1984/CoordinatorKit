@@ -1,0 +1,23 @@
+disabled_rules:
+  - line_length
+  - function_parameter_count
+opt_in_rules:
+  - contains_over_first_not_nil
+  - convenience_type
+  - empty_count
+  - empty_string
+  - first_where
+  - force_unwrapping
+  - last_where
+  - modifier_order
+  - sorted_first_last
+excluded:
+    - Carthage
+    - CoordinatorKitTests/Mocks/GeneratedMocks.swift
+
+deployment_target:
+  iOS_deployment_target: "9.0"
+
+trailing_whitespace:
+  ignores_empty_lines: true
+  ignores_comments: true

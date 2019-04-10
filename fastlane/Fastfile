@@ -24,6 +24,11 @@ platform :ios do
 
   sdk_project_directory = "CoordinatorKit"
 
+  desc "Bootstraps SDK dependencies"
+  lane :sdk_bootstrap do
+    bootstrap(project_directory: "../" + sdk_project_directory)
+  end
+
   desc "Runs SDK tests"
   lane :sdk_test do
     test(project_directory: sdk_project_directory, scheme: "CoordinatorKit", coverage_target: "CoordinatorKit.framework")

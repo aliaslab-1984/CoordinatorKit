@@ -14,7 +14,7 @@ public final class Router: NSObject {
     public var navigationController: UINavigationController
     private var navigateBackDelegates: [String: NavigateBackDelegate]
     
-    init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.navigateBackDelegates = [:]
         super.init()

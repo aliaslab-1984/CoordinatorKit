@@ -22,7 +22,7 @@ import_from_git(
 
 platform :ios do
 
-  sdk_project_directory = "."
+  sdk_project_directory = "CoordinatorKit"
 
   desc "Runs SDK tests"
   lane :sdk_test do

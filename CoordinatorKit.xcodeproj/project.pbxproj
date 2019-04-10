@@ -6,6 +6,21 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		6B2D8D03225E3011004EA81A /* CoordinatorKit-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 6B2D8D04225E3011004EA81A /* Build configuration list for PBXAggregateTarget "CoordinatorKit-Universal" */;
+			buildPhases = (
+				6B2D8D09225E309E004EA81A /* ShellScript */,
+			);
+			dependencies = (
+				6B2D8D08225E309A004EA81A /* PBXTargetDependency */,
+			);
+			name = "CoordinatorKit-Universal";
+			productName = "CoordinatorKit-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6B2D8CE9225E262B004EA81A /* CoordinatorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2D8CDF225E262B004EA81A /* CoordinatorKit.framework */; };
 		6B2D8CEE225E262B004EA81A /* CoordinatorKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D8CED225E262B004EA81A /* CoordinatorKitTests.swift */; };
@@ -18,6 +33,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		6B2D8CEA225E262B004EA81A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B2D8CD6225E262B004EA81A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B2D8CDE225E262B004EA81A;
+			remoteInfo = CoordinatorKit;
+		};
+		6B2D8D07225E309A004EA81A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6B2D8CD6225E262B004EA81A /* Project object */;
 			proxyType = 1;
@@ -174,6 +196,9 @@
 					6B2D8CE7225E262B004EA81A = {
 						CreatedOnToolsVersion = 10.2;
 					};
+					6B2D8D03225E3011004EA81A = {
+						CreatedOnToolsVersion = 10.2;
+					};
 				};
 			};
 			buildConfigurationList = 6B2D8CD9225E262B004EA81A /* Build configuration list for PBXProject "CoordinatorKit" */;
@@ -190,6 +215,7 @@
 			targets = (
 				6B2D8CDE225E262B004EA81A /* CoordinatorKit */,
 				6B2D8CE7225E262B004EA81A /* CoordinatorKitTests */,
+				6B2D8D03225E3011004EA81A /* CoordinatorKit-Universal */,
 			);
 		};
 /* End PBXProject section */
@@ -230,6 +256,23 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nfi\n";
 		};
+		6B2D8D09225E309E004EA81A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=true\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}-Universal.framework\"\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\n\nxcodebuild -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\nmkdir \"${FRAMEWORK}\"\n\n######################\n# Copy framework files\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n######################\n# Make a universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\nfi\n\nif [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\nfi\n\n######################\n# On Release, copy the result to release directory\n######################\nOUTPUT_DIR=\"${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\n\nrm -rf \"$OUTPUT_DIR\"\nmkdir -p \"$OUTPUT_DIR\"\n\ncp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -259,6 +302,11 @@
 			isa = PBXTargetDependency;
 			target = 6B2D8CDE225E262B004EA81A /* CoordinatorKit */;
 			targetProxy = 6B2D8CEA225E262B004EA81A /* PBXContainerItemProxy */;
+		};
+		6B2D8D08225E309A004EA81A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B2D8CDE225E262B004EA81A /* CoordinatorKit */;
+			targetProxy = 6B2D8D07225E309A004EA81A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -478,6 +526,35 @@
 			};
 			name = Release;
 		};
+		6B2D8D05225E3011004EA81A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					x86_64,
+				);
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G8T8XQ7RF6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
+			};
+			name = Debug;
+		};
+		6B2D8D06225E3011004EA81A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					x86_64,
+				);
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G8T8XQ7RF6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -504,6 +581,15 @@
 			buildConfigurations = (
 				6B2D8CF7225E262B004EA81A /* Debug */,
 				6B2D8CF8225E262B004EA81A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6B2D8D04225E3011004EA81A /* Build configuration list for PBXAggregateTarget "CoordinatorKit-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B2D8D05225E3011004EA81A /* Debug */,
+				6B2D8D06225E3011004EA81A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

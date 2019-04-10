@@ -6,11 +6,12 @@
 ._*
 
 build/
+Output/
 **/docs/
 **/slather_reports/
 **/swiftlint-results.xml
 DerivedData/
-xcuserdata/
+**/xcuserdata/
 
 *.moved-aside
 *.xccheckout

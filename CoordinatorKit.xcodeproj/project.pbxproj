@@ -10,6 +10,10 @@
 		6B2D8CE9225E262B004EA81A /* CoordinatorKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B2D8CDF225E262B004EA81A /* CoordinatorKit.framework */; };
 		6B2D8CEE225E262B004EA81A /* CoordinatorKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D8CED225E262B004EA81A /* CoordinatorKitTests.swift */; };
 		6B2D8CF0225E262B004EA81A /* CoordinatorKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B2D8CE2225E262B004EA81A /* CoordinatorKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B2D8CFB225E2A95004EA81A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D8CFA225E2A95004EA81A /* Coordinator.swift */; };
+		6B2D8CFD225E2AA0004EA81A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D8CFC225E2AA0004EA81A /* Router.swift */; };
+		6B2D8CFF225E2AAB004EA81A /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D8CFE225E2AAB004EA81A /* Transition.swift */; };
+		6B2D8D02225E2B87004EA81A /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D8D01225E2B87004EA81A /* RouterProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,10 @@
 		6B2D8CE8225E262B004EA81A /* CoordinatorKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoordinatorKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2D8CED225E262B004EA81A /* CoordinatorKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorKitTests.swift; sourceTree = "<group>"; };
 		6B2D8CEF225E262B004EA81A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B2D8CFA225E2A95004EA81A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		6B2D8CFC225E2AA0004EA81A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		6B2D8CFE225E2AAB004EA81A /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
+		6B2D8D01225E2B87004EA81A /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,8 @@
 			children = (
 				6B2D8CE2225E262B004EA81A /* CoordinatorKit.h */,
 				6B2D8CE3225E262B004EA81A /* Info.plist */,
+				6B2D8CFA225E2A95004EA81A /* Coordinator.swift */,
+				6B2D8D00225E2B70004EA81A /* Router */,
 			);
 			path = CoordinatorKit;
 			sourceTree = "<group>";
@@ -84,6 +94,16 @@
 				6B2D8CEF225E262B004EA81A /* Info.plist */,
 			);
 			path = CoordinatorKitTests;
+			sourceTree = "<group>";
+		};
+		6B2D8D00225E2B70004EA81A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				6B2D8D01225E2B87004EA81A /* RouterProtocol.swift */,
+				6B2D8CFC225E2AA0004EA81A /* Router.swift */,
+				6B2D8CFE225E2AAB004EA81A /* Transition.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +169,7 @@
 				TargetAttributes = {
 					6B2D8CDE225E262B004EA81A = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 					6B2D8CE7225E262B004EA81A = {
 						CreatedOnToolsVersion = 10.2;
@@ -216,6 +237,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B2D8CFF225E2AAB004EA81A /* Transition.swift in Sources */,
+				6B2D8CFD225E2AA0004EA81A /* Router.swift in Sources */,
+				6B2D8D02225E2B87004EA81A /* RouterProtocol.swift in Sources */,
+				6B2D8CFB225E2A95004EA81A /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +388,7 @@
 		6B2D8CF4225E262B004EA81A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -381,6 +407,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.aliaslab.CoordinatorKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -389,6 +416,7 @@
 		6B2D8CF5225E262B004EA81A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -415,6 +443,7 @@
 		6B2D8CF7225E262B004EA81A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G8T8XQ7RF6;
 				INFOPLIST_FILE = CoordinatorKitTests/Info.plist;
@@ -433,6 +462,7 @@
 		6B2D8CF8225E262B004EA81A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G8T8XQ7RF6;
 				INFOPLIST_FILE = CoordinatorKitTests/Info.plist;

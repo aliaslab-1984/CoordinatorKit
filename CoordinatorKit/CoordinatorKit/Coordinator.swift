@@ -12,7 +12,7 @@ import UIKit
 public protocol Coordinator: AnyObject, Presentable {
     
     var childCoordinators: [Coordinator] { get set }
-    var router: RouterProtocol { get set }
+    var router: RouterProtocol { get }
     
     func start() -> Bool
 }

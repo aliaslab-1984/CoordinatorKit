@@ -41,21 +41,3 @@ public protocol CompletableFlow {
     
     var finishFlow: ((FlowOutput) -> Void)? { get set }
 }
-
-// MARK: - StoryboardInstantiable
-public protocol StoryboardInstantiable {
-    
-    static func makeInstance() -> Self
-}
-
-public extension StoryboardInstantiable where Self: UIViewController {
-    
-    static func makeInstance() -> Self {
-        
-        let fullName = NSStringFromClass(self)
-        let className = fullName.components(separatedBy: ".")[1]
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        // swiftlint:disable:next force_cast
-        return storyboard.instantiateViewController(withIdentifier: className) as! Self
-    }
-}

@@ -46,6 +46,11 @@ Publishes the SDK framework to Artifactory
 fastlane ios build_deploy_framework
 ```
 Rebuilds the framework and publishes it to Artifactory
+### ios sdk_bootstrap
+```
+fastlane ios sdk_bootstrap
+```
+Bootstraps SDK dependencies
 ### ios sdk_test
 ```
 fastlane ios sdk_test

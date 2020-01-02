@@ -19,11 +19,11 @@ public protocol StoryboardInstantiable {
 
 public extension StoryboardInstantiable where Self: UIViewController {
     
-    static func makeInstance(dependencies: Dependencies) -> Self {
+    static func makeInstance(dependencies: Dependencies, storyboard name: String = "Main") -> Self {
         
         let fullName = NSStringFromClass(self)
         let className = fullName.components(separatedBy: ".")[1]
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: name, bundle: Bundle.main)
         // swiftlint:disable:next force_cast
         var instance = storyboard.instantiateViewController(withIdentifier: className) as! Self
         instance.dependencies = dependencies

@@ -10,7 +10,7 @@
 import UIKit
 import Foundation
 
-protocol Coordinated: UIViewController where Self: StoryboardInstantiable {
+public protocol Coordinated: UIViewController where Self: StoryboardInstantiable {
     
     func setCoordinator(coordinator: GenericCoordinator<Self>?)
 }
@@ -18,7 +18,7 @@ protocol Coordinated: UIViewController where Self: StoryboardInstantiable {
 /**
  Riduce il codice duplicato nei coordinator; necessita che i ViewController adottino il protocollo setCoordinator
  */
-class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
+public class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
     
     let dependencies: T.Dependencies
     

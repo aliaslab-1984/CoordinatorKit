@@ -36,12 +36,9 @@ class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
         self.dependencies = dependencies
     }
     
-    func genericDependencies() -> AppDependencies {
+    func genericDependencies() -> T.Dependencies {
         
-        guard let dep = dependencies as? AppDependencies else {
-            fatalError()
-        }
-        return dep
+        return dependencies
     }
 }
 

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+#if canImport(UIKit)
+import UIKit
 
 // MARK: - Transition
 public enum Transition {
@@ -46,3 +48,4 @@ private extension Transition {
         return result
     }
 }
+#endif

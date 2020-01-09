@@ -7,6 +7,7 @@
 //
 
 import Foundation
+#if canImport(UIKit)
 
 // MARK: - StoryboardInstantiable
 public protocol StoryboardInstantiable {
@@ -30,3 +31,4 @@ public extension StoryboardInstantiable where Self: UIViewController {
         return instance
     }
 }
+#endif

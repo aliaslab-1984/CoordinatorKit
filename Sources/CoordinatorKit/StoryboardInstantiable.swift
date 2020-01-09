@@ -13,15 +13,15 @@ import UIKit
 // MARK: - StoryboardInstantiable
 public protocol StoryboardInstantiable {
     
-    associatedtype Dependencies
-    var dependencies: Dependencies? { get set }
+    public associatedtype Dependencies
+    public var dependencies: Dependencies? { get set }
     
-    static func makeInstance(dependencies: Dependencies) -> Self
+    public static func makeInstance(dependencies: Dependencies) -> Self
 }
 
 public extension StoryboardInstantiable where Self: UIViewController {
     
-    static func makeInstance(dependencies: Dependencies) -> Self {
+    public static func makeInstance(dependencies: Dependencies) -> Self {
         
         let fullName = NSStringFromClass(self)
         let className = fullName.components(separatedBy: ".")[1]

@@ -6,6 +6,7 @@
 //  Copyright © 2019 AliasLab S.p.A. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 // MARK: - Router
@@ -112,3 +113,4 @@ private extension Router {
         delegate()
     }
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2019 AliasLab SpA. All rights reserved.
 //
 
+#if canImport(UIKit)
 import Foundation
 import UIKit
 
@@ -37,3 +38,4 @@ extension UIViewController: Presentable {
         return self
     }
 }
+#endif

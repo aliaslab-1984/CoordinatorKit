@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CoordinatorKitPackage">
+   </FileRef>
+   <FileRef
       location = "container:CoordinatorKit/CoordinatorKit.xcodeproj">
    </FileRef>
 </Workspace>

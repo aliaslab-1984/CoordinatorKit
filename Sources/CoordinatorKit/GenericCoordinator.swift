@@ -18,7 +18,7 @@ public protocol Coordinated: UIViewController where Self: StoryboardInstantiable
 /**
  Riduce il codice duplicato nei coordinator; necessita che i ViewController adottino il protocollo setCoordinator
  */
-public class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
+open class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
     
     let dependencies: T.Dependencies
     
@@ -29,14 +29,14 @@ public class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
         return T.makeInstance(dependencies: dependencies)
     }()
     
-    init(router: RouterProtocol,
+    public init(router: RouterProtocol,
          dependencies: T.Dependencies) {
         
         self.router = router
         self.dependencies = dependencies
     }
     
-    func genericDependencies() -> T.Dependencies {
+    public func genericDependencies() -> T.Dependencies {
         
         return dependencies
     }

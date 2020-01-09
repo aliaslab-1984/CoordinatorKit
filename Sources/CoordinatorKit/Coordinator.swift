@@ -19,6 +19,7 @@ public protocol Coordinator: AnyObject, Presentable {
 }
 
 public extension Coordinator {
+    
     /// Add's a new child coordinator to the children list.
     /// - Parameter child: coordinator child to add.
     func addChild(_ child: Coordinator) {

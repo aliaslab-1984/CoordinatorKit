@@ -20,17 +20,17 @@ public protocol Coordinated: UIViewController where Self: StoryboardInstantiable
  */
 open class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
     
-    let dependencies: T.Dependencies
+    private let dependencies: AnyClass
     
     public var childCoordinators = [Coordinator]()
     public let router: RouterProtocol
     
     private lazy var viewController: T = { [unowned self] in
-        return T.makeInstance(dependencies: dependencies)
+        return T.makeInstance(dependencies: dependencies as! T.Dependencies)
     }()
     
     public init(router: RouterProtocol,
-         dependencies: T.Dependencies) {
+         dependencies: AnyClass) {
         
         self.router = router
         self.dependencies = dependencies
@@ -38,7 +38,7 @@ open class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
     
     public func genericDependencies() -> AnyClass {
         
-        return dependencies as! AnyClass
+        return dependencies
     }
 }
 

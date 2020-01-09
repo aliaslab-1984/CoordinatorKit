@@ -44,14 +44,14 @@ class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
 
 extension GenericCoordinator: Presentable {
     
-    func toPresent() -> UIViewController? {
+    public func toPresent() -> UIViewController? {
         return viewController
     }
 }
 
 extension GenericCoordinator: Coordinator {
     
-    func start() -> Bool {
+    public func start() -> Bool {
         
         viewController.setCoordinator(coordinator: self)
         return true

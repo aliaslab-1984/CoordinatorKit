@@ -13,7 +13,7 @@ import UIKit
 open class GenericCoordinator<T: Coordinated & StoryboardInstantiable> {
     
     public var childCoordinators = [Coordinator]()
-    public let router: RouterPrococol
+    public let router: RouterProtocol
     
     let dependencies: T.Dependencies
     

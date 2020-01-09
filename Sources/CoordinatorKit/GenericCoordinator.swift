@@ -36,9 +36,9 @@ open class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
         self.dependencies = dependencies
     }
     
-    public func genericDependencies() -> T.Dependencies {
+    public func genericDependencies() -> AnyClass {
         
-        return dependencies
+        return dependencies as! AnyClass
     }
 }
 

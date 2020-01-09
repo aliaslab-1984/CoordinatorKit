@@ -22,8 +22,8 @@ public class GenericCoordinator<T: StoryboardInstantiable & Coordinated> {
     
     let dependencies: T.Dependencies
     
-    var childCoordinators = [Coordinator]()
-    let router: RouterProtocol
+    public var childCoordinators = [Coordinator]()
+    public let router: RouterProtocol
     
     private lazy var viewController: T = { [unowned self] in
         return T.makeInstance(dependencies: dependencies)

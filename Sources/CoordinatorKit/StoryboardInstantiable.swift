@@ -13,10 +13,10 @@ import UIKit
 // MARK: - StoryboardInstantiable
 public protocol StoryboardInstantiable {
     
-    public associatedtype Dependencies
-    public var dependencies: Dependencies? { get set }
+    associatedtype Dependencies
+    var dependencies: Dependencies? { get set }
     
-    public static func makeInstance(dependencies: Dependencies) -> Self
+    static func makeInstance(dependencies: Dependencies) -> Self
 }
 
 public extension StoryboardInstantiable where Self: UIViewController {

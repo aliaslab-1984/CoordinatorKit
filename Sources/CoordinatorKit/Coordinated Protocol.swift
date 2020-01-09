@@ -11,7 +11,7 @@ import UIKit
 
 public protocol Coordinated: UIViewController where Self: StoryboardInstantiable {
     
-    public func setCoordinator(coordinator: GenericCoordinator<Self>?)
+    func setCoordinator(coordinator: GenericCoordinator<Self>?)
     
 }
 

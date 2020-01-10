@@ -10,7 +10,9 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 
-public protocol DependenciesValidator { }
+public protocol DependenciesValidator {
+    init()
+}
 
 // MARK: - StoryboardInstantiable
 public protocol StoryboardInstantiable {

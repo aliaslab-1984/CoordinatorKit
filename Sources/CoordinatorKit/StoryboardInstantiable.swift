@@ -11,13 +11,13 @@ import Foundation
 import UIKit
 
 public protocol DependenciesValidator {
-    init()
+    
 }
 
 // MARK: - StoryboardInstantiable
 public protocol StoryboardInstantiable {
     
-    associatedtype Dependencies: DependenciesValidator
+    associatedtype Dependencies: Any
     var dependencies: Dependencies? { get set }
     
     static func makeInstance(dependencies: Dependencies) -> Self

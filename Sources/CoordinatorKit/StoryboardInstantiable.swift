@@ -10,22 +10,28 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 
+public protocol DependenciesValidator { }
+
 // MARK: - StoryboardInstantiable
 public protocol StoryboardInstantiable {
     
-    associatedtype Dependencies
+    associatedtype Dependencies: DependenciesValidator
     var dependencies: Dependencies? { get set }
     
     static func makeInstance(dependencies: Dependencies) -> Self
+    static func makeInstance(dependencies: Dependencies, storyboard name: String) -> Self
 }
 
 public extension StoryboardInstantiable where Self: UIViewController {
     
     public static func makeInstance(dependencies: Dependencies) -> Self {
-        
+        return Self.makeInstance(dependencies: dependencies, storyboard: "Main")
+    }
+    
+    public static func makeInstance(dependencies: Dependencies, storyboard name: String) -> Self {
         let fullName = NSStringFromClass(self)
         let className = fullName.components(separatedBy: ".")[1]
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let storyboard = UIStoryboard(name: name, bundle: Bundle.main)
         // swiftlint:disable:next force_cast
         var instance = storyboard.instantiateViewController(withIdentifier: className) as! Self
         instance.dependencies = dependencies

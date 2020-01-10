@@ -15,20 +15,22 @@ open class GenericCoordinator<T: Coordinated & StoryboardInstantiable> {
     public var childCoordinators = [Coordinator]()
     public let router: RouterProtocol
     
-    let dependencies: T.Dependencies
+    let dependencies: CoordinatorDependencies
+    
+    public typealias CoordinatorDependencies = T.Dependencies
     
     private lazy var viewController: T = { [unowned self] in
         return T.makeInstance(dependencies: dependencies)
     }()
     
     public init(router: RouterProtocol,
-         dependencies: T.Dependencies) {
+         dependencies: CoordinatorDependencies) {
         
         self.router = router
         self.dependencies = dependencies
     }
 
-    public func genericDependencies() -> T.Dependencies {
+    public func genericDependencies() -> CoordinatorDependencies {
         return dependencies
     }
     

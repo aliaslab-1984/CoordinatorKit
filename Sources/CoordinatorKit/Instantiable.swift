@@ -30,7 +30,7 @@ public extension Instantiable where Self: UIViewController {
         
         switch Self.fromStoryboard {
         case .programmatic:
-            let instance = Self.init()
+            var instance = Self.init()
             instance.dependencies = dependencies
             
             return instance

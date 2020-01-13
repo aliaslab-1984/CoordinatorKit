@@ -10,10 +10,6 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 
-public protocol DependenciesValidator {
-    
-}
-
 // MARK: - StoryboardInstantiable
 public protocol StoryboardInstantiable: WithDependencies {
 
@@ -23,10 +19,14 @@ public protocol StoryboardInstantiable: WithDependencies {
 
 public extension StoryboardInstantiable where Self: WithDependencies {
     
+    /// Static instantiation from the storyboard of a view controller. (Notice that this method instantiate from the Main.storyboard, if you want to instantiate from a diffrent storyboard use the other static method.)
+    /// - Parameter dependencies: The list of dependencies needed by the desired view controller.
     public static func makeInstance(dependencies: Dependencies) -> Self {
         return Self.makeInstance(dependencies: dependencies, storyboard: "Main")
     }
-    
+    /// Static instantiation from the storyboard name of a view controller.
+    /// - Parameter dependencies: The list of dependencies needed by the desired view controller.
+    /// - Parameter storyboard: The name (without the .storyboard extension) of the storyboard in which the view controller is located.
     public static func makeInstance(dependencies: Dependencies, storyboard name: String) -> Self {
         let fullName = NSStringFromClass(self)
         let className = fullName.components(separatedBy: ".")[1]

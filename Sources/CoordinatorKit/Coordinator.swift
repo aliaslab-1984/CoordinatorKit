@@ -15,6 +15,7 @@ public protocol Coordinator: AnyObject, Presentable {
     var childCoordinators: [Coordinator] { get set }
     var router: RouterProtocol { get }
     
+    /// In this function is key to assign the coordinator delegate to the view controllers that need to be presented. (See coordinated protocol)
     func start() -> Bool
 }
 
@@ -43,6 +44,7 @@ public extension Coordinator {
 }
 
 public protocol DismissableFlow {
+    /// Closure that will be executed every time the current coordinator will be dismissed.
     var dismissFlow: (() -> Void)? { get set }
 }
 

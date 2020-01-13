@@ -16,7 +16,7 @@ public protocol Instantiable {
     associatedtype Dependencies
     
     var dependencies: Dependencies? {get set}
-    static var fromStoryboard: Method { get set }
+    static var fromStoryboard: InstanceMode { get }
 
     static func makeInstance(dependencies: Dependencies) -> Self
     static func makeInstance(dependencies: Dependencies, storyboard name: String) -> Self

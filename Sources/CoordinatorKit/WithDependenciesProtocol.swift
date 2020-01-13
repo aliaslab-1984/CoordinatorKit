@@ -9,7 +9,7 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 
-public enum Method {
+public enum InstanceMode {
     case programmatic
     case storyboard(name: String?)
 }

@@ -10,6 +10,7 @@
 import UIKit
 
 // MARK: - Router
+/// Class that handles the navigation related tasks.
 public final class Router: NSObject {
     
     public var navigationController: UINavigationController

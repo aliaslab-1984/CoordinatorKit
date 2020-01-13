@@ -22,7 +22,7 @@ public protocol Instantiable {
     static func makeInstance(dependencies: Dependencies, storyboard name: String) -> Self
 }
 
-public extension Instantiable where Self: WithDependencies {
+public extension Instantiable where Self: UIViewController {
     
     /// Static instantiation from the storyboard of a view controller. (Notice that this method instantiate from the Main.storyboard, if you want to instantiate from a diffrent storyboard use the other static method.)
     /// - Parameter dependencies: The list of dependencies needed by the desired view controller.

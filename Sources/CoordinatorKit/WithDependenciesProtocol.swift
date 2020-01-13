@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Protocol used to describe the dependencies required by the delegates that implements it.
-public protocol WithDependencies {
+public protocol WithDependencies: UIViewController {
     associatedtype Dependencies
     
     var dependencies: Dependencies? {get set}

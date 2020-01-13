@@ -15,16 +15,13 @@ public protocol DependenciesValidator {
 }
 
 // MARK: - StoryboardInstantiable
-public protocol StoryboardInstantiable {
-    
-    associatedtype Dependencies: Any
-    var dependencies: Dependencies? { get set }
-    
+public protocol StoryboardInstantiable: WithDependencies {
+
     static func makeInstance(dependencies: Dependencies) -> Self
     static func makeInstance(dependencies: Dependencies, storyboard name: String) -> Self
 }
 
-public extension StoryboardInstantiable where Self: UIViewController {
+public extension StoryboardInstantiable where Self: WithDependencies {
     
     public static func makeInstance(dependencies: Dependencies) -> Self {
         return Self.makeInstance(dependencies: dependencies, storyboard: "Main")

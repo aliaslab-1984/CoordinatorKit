@@ -10,19 +10,37 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 
-// MARK: - StoryboardInstantiable
-public protocol StoryboardInstantiable: WithDependencies {
+// MARK: - Instantiable protocol
+public protocol Instantiable {
+    
+    associatedtype Dependencies
+    
+    var dependencies: Dependencies? {get set}
+    static var fromStoryboard: Method { get set }
 
     static func makeInstance(dependencies: Dependencies) -> Self
     static func makeInstance(dependencies: Dependencies, storyboard name: String) -> Self
 }
 
-public extension StoryboardInstantiable where Self: WithDependencies {
+public extension Instantiable where Self: WithDependencies {
     
     /// Static instantiation from the storyboard of a view controller. (Notice that this method instantiate from the Main.storyboard, if you want to instantiate from a diffrent storyboard use the other static method.)
     /// - Parameter dependencies: The list of dependencies needed by the desired view controller.
     public static func makeInstance(dependencies: Dependencies) -> Self {
-        return Self.makeInstance(dependencies: dependencies, storyboard: "Main")
+        
+        switch Self.fromStoryboard {
+        case .programmatic:
+            let instance = Self.init()
+            instance.dependencies = dependencies
+            
+            return instance
+        case .storyboard(let name):
+            if let name = name {
+                return Self.makeInstance(dependencies: dependencies, storyboard: name)
+            } else {
+                return Self.makeInstance(dependencies: dependencies, storyboard: "Main")
+            }
+        }
     }
     /// Static instantiation from the storyboard name of a view controller.
     /// - Parameter dependencies: The list of dependencies needed by the desired view controller.

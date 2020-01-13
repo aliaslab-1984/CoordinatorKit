@@ -10,30 +10,33 @@ import Foundation
 #if canImport(UIKit)
 import UIKit
 
-open class GenericCoordinator<T: Coordinated & StoryboardInstantiable> {
+open class GenericCoordinator<T: Coordinated & WithDependencies> {
     
     public var childCoordinators = [Coordinator]()
     public let router: RouterProtocol
     
-    let dependencies: CoordinatorDependencies
-    
-    public typealias CoordinatorDependencies = T.Dependencies
+    let dependencies: T.Dependencies
     
     private lazy var viewController: T = { [unowned self] in
-        return T.makeInstance(dependencies: dependencies)
+        if let casted = T as? StoryboardInstantiable {
+            return casted.makeInstance(dependencies: dependencies)
+        } else {
+            let v = T.init()
+            v.dependencies = dependencies
+            return v
+        }
     }()
     
     public init(router: RouterProtocol,
-         dependencies: CoordinatorDependencies) {
+         dependencies: T.Dependencies) {
         
         self.router = router
         self.dependencies = dependencies
     }
 
-    public func genericDependencies() -> CoordinatorDependencies {
+    public func genericDependencies() -> T.Dependencies {
         return dependencies
     }
-    
 }
 
 extension GenericCoordinator: Presentable {
@@ -46,7 +49,6 @@ extension GenericCoordinator: Presentable {
 extension GenericCoordinator: Coordinator {
     
     public func start() -> Bool {
-        
         viewController.setCoordinator(coordinator: self)
         return true
     }

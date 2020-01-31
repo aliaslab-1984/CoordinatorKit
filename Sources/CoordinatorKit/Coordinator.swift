@@ -6,8 +6,6 @@
 //  Copyright © 2019 AliasLab S.p.A. All rights reserved.
 //
 
-#if canImport(UIKit)
-import UIKit
 
 // MARK: - Coordinator
 public protocol Coordinator: AnyObject, Presentable {
@@ -54,4 +52,3 @@ public protocol CompletableFlow {
     
     var finishFlow: ((FlowOutput) -> Void)? { get set }
 }
-#endif
